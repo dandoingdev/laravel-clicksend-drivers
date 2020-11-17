@@ -59,12 +59,12 @@ class ClickSendChannelTest extends MockeryTestCase
         $this->api->shouldReceive('sendSms')
             ->once()
             ->withArgs(function ($arg) {
-                      if ($arg instanceof ClickSendMessage) {
-                          return true;
-                      }
+                if ($arg instanceof ClickSendMessage) {
+                    return true;
+                }
 
-                      return false;
-                  });
+                return false;
+            });
 
         $this->channel->send(new TestNotifiable(), new TestNotification());
     }
