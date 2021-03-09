@@ -58,7 +58,9 @@ class ClickSendChannel
             return [];
         }
 
-        $to = $notifiable->routeNotificationForClicksend();
+        $to = (isset($notifiable->routes) && isset($notifiable->routes['notification_for_click_send'])) ?
+            $notifiable->routes['notification_for_click_send'] :
+            $notifiable->routeNotificationForClicksend();
 
         if (! $to) {
             throw CouldNotSendNotification::missingRecipient();
