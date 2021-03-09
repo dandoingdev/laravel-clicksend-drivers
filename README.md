@@ -1,4 +1,4 @@
-# ClickSend notifications channel for Laravel 5.8 / 6.*
+# ClickSend notifications channel for Laravel 5.8 / 6.* / 7.* / 8.*
 
 This package makes it easy to send notifications using [clicksend.com](//clicksend.com) with Laravel 5.6+.
 Uses ClickSend PHP API wrapper [https://github.com/ClickSend/clicksend-php]
@@ -103,6 +103,16 @@ public function routeNotificationForClickSend()
 }
 ...
 ```
+### Optional
+
+If you want to use a custom notification route instead:
+
+```php
+Notification::route('notification_for_click_send', '+15555555555')
+              ->notify(new ClickSendTest());
+
+```
+
 From controller then send notification standard way:
 ```php
 
@@ -116,6 +126,9 @@ catch (\Exception $e) {
 	return $e->getMessage();
 }
 ```
+
+
+
 
 ## Events
 Following events are triggered by Notification. By default:
