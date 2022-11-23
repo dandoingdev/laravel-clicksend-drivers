@@ -11,7 +11,7 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="deshack/laravel-sms-clicksend Test Suite">
+    <testsuite name="deshack/laravel-clicksend-drivers Test Suite">
       <directory>tests</directory>
     </testsuite>
   </testsuites>

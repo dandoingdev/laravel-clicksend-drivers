@@ -1,70 +1,75 @@
 {
-    "name": "cca-bheath/laravel-sms-clicksend",
-    "description": "ClickSend Notifications channel for Laravel 5.8+",
-    "keywords": [
-        "laravel",
-        "notifications",
-        "clicksend",
-        "sms"
-    ],
-    "homepage": "https://github.com/cca-bheath/laravel-sms-clicksend",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Vladimir Kundrat",
-            "role": "Developer",
-            "email": "vlado@12345.com.au",
-            "homepage": "https://github.com/vladski"
-        },
-        {
-            "name": "Mattia Migliorini",
-            "role": "Maintainer",
-            "email": "mattia@visiaquantum.com",
-            "homepage": "https://github.com/deshack"
-        }
-    ],
-    "require": {
-        "php": ">=7.2",
-        "ext-json": "*",
-        "hju-fork/clicksend-php": "^5.0.65",
-        "illuminate/queue": "5.8.*|^6.0|^7.0|^8.0",
-        "illuminate/notifications": "5.8.*|^6.0|^7.0|^8.0",
-        "illuminate/support": "5.8.*|^6.0|^7.0|^8.0",
-        "illuminate/events": "5.8.*|^6.0|^7.0|^8.0"
+  "name": "dandoingdev/laravel-clicksend-drivers",
+  "description": "ClickSend Notifications channel for Laravel 5.8+",
+  "keywords": [
+    "laravel",
+    "notifications",
+    "clicksend",
+    "sms"
+  ],
+  "homepage": "https://github.com/dandoingdev/laravel-clicksend-drivers",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladimir Kundrat",
+      "role": "Developer",
+      "email": "vlado@12345.com.au",
+      "homepage": "https://github.com/vladski"
     },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "illuminate/config": "5.8.*|^6.0|^7.0|^8.0",
-        "phpunit/phpunit": "^9.0",
-        "mockery/mockery": "^1.0"
+    {
+      "name": "Mattia Migliorini",
+      "role": "Maintainer",
+      "email": "mattia@visiaquantum.com",
+      "homepage": "https://github.com/deshack"
     },
-    "replace": {
-        "vladski/laravel-sms-clicksend": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "NotificationChannels\\ClickSend\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "NotificationChannels\\ClickSend\\Test\\": "tests"
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "scripts": {
-        "format": [
-            "vendor/bin/php-cs-fixer fix --allow-risky=yes"
-        ],
-        "test": "vendor/bin/phpunit"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "NotificationChannels\\ClickSend\\ClickSendServiceProvider"
-            ]
-        }
+    {
+      "name": "Daniel MWH",
+      "role": "Maintainer",
+      "homepage": "https://github.com/dandoingdev"
     }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-json": "*",
+    "clicksend/clicksend-php": "^5.0",
+    "illuminate/events": "5.8.*|^6.0|^7.0|^8.0|^9.0",
+    "illuminate/notifications": "5.8.*|^6.0|^7.0|^8.0|^9.0",
+    "illuminate/queue": "5.8.*|^6.0|^7.0|^8.0|^9.0",
+    "illuminate/support": "5.8.*|^6.0|^7.0|^8.0|^9.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "illuminate/config": "5.8.*|^6.0|^7.0|^8.0",
+    "phpunit/phpunit": "^9.0",
+    "mockery/mockery": "^1.0"
+  },
+  "replace": {
+    "vladski/laravel-clicksend-drivers": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "NotificationChannels\\ClickSend\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "NotificationChannels\\ClickSend\\Test\\": "tests"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "format": [
+      "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    ],
+    "test": "vendor/bin/phpunit"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "NotificationChannels\\ClickSend\\ClickSendServiceProvider"
+      ]
+    }
+  }
 }

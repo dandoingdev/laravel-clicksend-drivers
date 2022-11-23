@@ -1,4 +1,4 @@
-# ClickSend notifications channel for Laravel 5.8 / 6.* / 7.* / 8.*
+# ClickSend notifications channel for Laravel 5.8 / 6._ / 7._ / 8.\*
 
 This package makes it easy to send notifications using [clicksend.com](//clicksend.com) with Laravel 5.6+.
 Uses ClickSend PHP API wrapper [https://github.com/ClickSend/clicksend-php]
@@ -15,15 +15,16 @@ Uses ClickSend PHP API wrapper [https://github.com/ClickSend/clicksend-php]
 - [Credits](#credits)
 - [License](#license)
 
-
 ## Installation
 
 Install the package via composer:
+
 ```bash
-composer require cca-bheath/laravel-sms-clicksend
+composer require dandoingdev/laravel-clicksend-drivers
 ```
 
 Add the service provider to `config/app.php`:
+
 ```php
 ...
 'providers' => [
@@ -64,7 +65,7 @@ class ClickSendTest extends Notification
     {
         $this->token = $token;
     }
-    
+
     /**
      * Required
      */
@@ -77,10 +78,10 @@ class ClickSendTest extends Notification
      * Required
      */
     public function getMessage($notifiable)
-    {  	
+    {
        	return "SMS test to user #{$notifiable->id} with token {$this->token} by ClickSend";
     }
-    
+
     /**
      * Optional
      */
@@ -103,6 +104,7 @@ public function routeNotificationForClickSend()
 }
 ...
 ```
+
 ### Optional
 
 If you want to use a custom notification route instead:
@@ -114,6 +116,7 @@ Notification::route('notification_for_click_send', '+15555555555')
 ```
 
 From controller then send notification standard way:
+
 ```php
 
 $user = User::find(1);
@@ -127,15 +130,15 @@ catch (\Exception $e) {
 }
 ```
 
-
-
-
 ## Events
+
 Following events are triggered by Notification. By default:
+
 - Illuminate\Notifications\Events\NotificationSending
 - Illuminate\Notifications\Events\NotificationSent
 
 and this channel triggers one when submission fails for any reason:
+
 - Illuminate\Notifications\Events\NotificationFailed
 
 To listen to those events create listener classes in `app/Listeners` folder e.g. to log failed SMS:
@@ -143,13 +146,13 @@ To listen to those events create listener classes in `app/Listeners` folder e.g.
 ```php
 
 namespace App\Listeners;
-	
+
 use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 use NotificationChannels\ClickSend\ClickSendChannel;
-	
+
 class NotificationFailedListener
 {
     /**
@@ -173,26 +176,25 @@ class NotificationFailedListener
         // Handle fail event for ClickSend
         //
         if($event->channel == ClickSendChannel::class) {
-	
+
             echo 'failed'; dump($event);
-            
+
             $logData = [
             	'notifiable'    => $event->notifiable->id,
             	'notification'  => get_class($event->notification),
             	'channel'       => $event->channel,
             	'data'      => $event->data
             	];
-            	
+
             Log::error('Notification Failed', $logData);
          }
          // ... handle other channels ...
     }
 }
 ```
- 
- 
- 
+
 Then register listeners in `app/Providers/EventServiceProvider.php`
+
 ```php
 ...
 protected $listen = [
@@ -212,16 +214,16 @@ protected $listen = [
 ...
 ```
 
-
 ## API Client
 
 To access the rest of ClickSend API you can get client from ClickSendApi:
+
 ```php
 $client = app(ClickSendApi::class)->getClient();
-	
+
 // then get for eaxample yor ClickSend account details:
 $account =  $client->getAccount()->getAccount();
-	
+
 // or list of countries:
 $countries =  $client->getCountries()->getCountries();
 
@@ -230,23 +232,23 @@ $countries =  $client->getCountries()->getCountries();
 ## Config
 
 - `CLICKSEND_DRIVER`
-    - `clicksend` or `log`
-    - Setting to `log` will send the SMS message to the log file and **not** try to send it
-- `CLICKSEND_ENABLED` 
-    - If set to false the channel will not run and return true.  This is good for testing
+  - `clicksend` or `log`
+  - Setting to `log` will send the SMS message to the log file and **not** try to send it
+- `CLICKSEND_ENABLED`
+  - If set to false the channel will not run and return true. This is good for testing
 - `CLICKSEND_USERNAME`
-    - Username on ClickSend
-    - You can see this information by click on the API Credentials link at the top of the dashboard
+  - Username on ClickSend
+  - You can see this information by click on the API Credentials link at the top of the dashboard
 - `CLICKSEND_API_KEY`
-    - API Key on ClickSend
-    - You can see this information by click on the API Credentials link at the top of the dashboard
+  - API Key on ClickSend
+  - You can see this information by click on the API Credentials link at the top of the dashboard
 - `CLICKSEND_SMS_FROM`
-    - Override the FROM on SMS and MMS messages
-    - Can leave blank
+  - Override the FROM on SMS and MMS messages
+  - Can leave blank
 - `CLICKSEND_PREFIX`
-    - Enforce that all `to` have this prefix
-    - For example +1
-    - This should only be used if you are sure that **_all_** `to` **_must_** have this prefix
+  - Enforce that all `to` have this prefix
+  - For example +1
+  - This should only be used if you are sure that **_all_** `to` **_must_** have this prefix
 
 ## Changelog
 
@@ -255,7 +257,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 ## Testing
 
 Incomplete
-``` bash
+
+```bash
 $ composer test
 ```
 
